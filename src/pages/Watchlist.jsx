@@ -1,13 +1,15 @@
 import React from "react";
+
 import { useWatchlist } from "../context/WatchlistContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Watchlist = () => {
     // Fetch two out of three returns from the custom hook
     const { watchlist, removeFromWatchlist } = useWatchlist();
-
+    const navigate = useNavigate();
     return (
-        <div>
+        <div className="container my-4" style={{maxWidth: '20rem'}}>
+            <button className="btn btn-secondary mb-3" onClick={() => navigate(-1)}>Go back</button>
             <h2>Your Watchlist</h2>
             {watchlist.length === 0 ? (
                 <p>Your watchlist is empty. Start adding some movies!</p>
@@ -15,20 +17,20 @@ const Watchlist = () => {
                 <ul>
                     {watchlist.map((movie) => (
                         <li key={movie.imdbID}>
-                            <strong>{movie.Title}</strong> ({movie.Year})
-                            <img src={movie.Poster} alt={`${movie.Title} Poster`} />
+                            <p><strong>{movie.Title}</strong> ({movie.Year})</p>
+                            <img src={movie.Poster} alt={`${movie.Title} Poster` } className='card-img-top' style={{ width: '300px'}} />
                             <button
                                 onClick={() => removeFromWatchlist(movie.imdbID)}
                                 style={{ color: 'red' }}
                             >
                                 Remove
                             </button>
+                            <Link to={`/details/${movie.imdbID}`} className="btn btn-primary">View Details</Link>
                         </li>
                     ))}
                 </ul>
             )
             }
-            <Link to={'/'}>Back to Movies</Link>
         </div>
     )
 

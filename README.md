@@ -17,3 +17,12 @@ Phase 2 (Thursday):
 - Watchlist feature (save movies to local storage or context).
 - Watchlist page
 - Implement "Delete from Watchlist" functionality.
+
+Phase 3 (Saturday):
+- Having a proper Navbar
+- Added the Details Page for each movie
+- Added "Go Back" navigation
+- Disable "Add to Watchlist" after adding it
+- Work on Notification Context, Component
+
+Note: Make sure you create a .env file in the root directory and provide your unique API KEY.
